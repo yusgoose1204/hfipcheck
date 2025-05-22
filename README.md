@@ -135,7 +135,7 @@ Aspiring Software Engineer | Focused on tools that bridge ops & automation
 
 ---
 
-## 📸 Screenshot (Optional)
+## 📸 Screenshot
 
 ![HFIPcheck demo](hfipcheck-demo.png)
 
