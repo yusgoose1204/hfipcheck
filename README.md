@@ -127,20 +127,29 @@ Aspiring Software Engineer | Focused on tools that bridge ops & automation
 
 ---
 
-## 📈 Future Ideas
-
-- Slack `/hypercheck help` command
-- UI dashboard for IP trace history
-- Integration with case triage tools
-
----
-
 ## 📸 Screenshot
 
 ![HFIPcheck demo](hfipcheck-demo.png)
 
 ---
 
-## 📄 License
+## 🧭 Flow Summary
 
-MIT License
+```mermaid
+sequenceDiagram
+  participant U as Slack User
+  participant S as Slack Server
+  participant C as Cloudflare Tunnel
+  participant F as Flask App
+
+  U->>S: /hfipcheck 141.163.208.1
+  S->>C: POST https://your-tunnel.trycloudflare.com/slack/events
+  C->>F: POST /slack/events
+  F->>F: Parse + process command
+  F->>S: Respond with message
+  S->>U: Display result in Slack
+
+
+## 📝 License
+
+This project is licensed under the [MIT License](./LICENSE).
