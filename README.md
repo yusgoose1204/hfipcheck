@@ -148,6 +148,7 @@ sequenceDiagram
   F->>F: Parse + process command
   F->>S: Respond with message
   S->>U: Display result in Slack
+```
 
 
 ## 📝 License
