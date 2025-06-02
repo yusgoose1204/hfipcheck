@@ -100,15 +100,13 @@ Aspiring Software Engineer | Focused on tools that bridge ops & automation
 sequenceDiagram
   participant U as Slack User
   participant S as Slack Server
-  participant C as Cloudflare Tunnel
-  participant F as Flask App
+  participant H as Heroku (Flask App)
 
   U->>S: /hfipcheck 141.163.208.1
-  S->>C: POST https://your-tunnel.trycloudflare.com/slack/events
-  C->>F: POST /slack/events
-  F->>F: Parse + process command
-  F->>S: Respond with message
-  S->>U: Display result in Slack
+  S->>H: POST https://hfipcheck.herokuapp.com/slack/events
+  H->>H: Parse + process command
+  H->>S: Respond with result
+  S->>U: Show response in Slack
 ```
 
 
