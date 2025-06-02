@@ -1,6 +1,7 @@
 from slack_bolt import App
 from dotenv import load_dotenv
 import os
+from hfipcheck import check_ip
 
 load_dotenv()
 
@@ -13,4 +14,11 @@ slack_bolt_app = App(
 def handle_command(ack, respond, command):
     print("✅ Slash command triggered:", command)
     ack()
-    respond("✅ Slack command received!")
+
+    ip = command["text"].strip()
+    if not ip:
+        respond(":warning: Please provide an IP address.")
+        return
+
+    result = check_ip(ip)
+    respond(result)
