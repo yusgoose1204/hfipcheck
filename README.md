@@ -10,9 +10,9 @@ Developed with Flask and Slack’s Bolt SDK, this tool enables fast IP checks di
 
 - ✅ Validates IPs against Salesforce's official [IP ranges](https://ip-ranges.salesforce.com/ip-ranges.json)
 - 🔍 Supports CIDR range matching (e.g., 141.163.208.2 matches 141.163.208.0/23)
-- 🌐 Integrates directly into Slack via a custom slash command
+- 🌐 Runs as a Heroku-hosted Flask app with Slack command integration
 - 🧪 Includes test harness and IP sample files
-- 🔒 Secrets managed securely via `.env` (never hardcoded)
+- 🔒 Environment variables manage secrets securely
 
 ---
 
@@ -30,55 +30,16 @@ hfipcheck/
 └── test_ips/            # Sample IP files + test runner
 ```
 
----
-
-## 🧪 Run Locally
-
-### 1. Install Python and create a virtual environment
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-### 2. Fetch the latest IP ranges
-
-```bash
-python fetch_ip_data.py
-```
-
-### 3. Create a `.env` file with your Slack credentials
-
-```
-SLACK_BOT_TOKEN=xoxb-your-slack-token
-SLACK_SIGNING_SECRET=your-signing-secret
-```
-
-### 4. Run the Flask server
-
-```bash
-flask --app app:flask_app run
-```
-
-### 5. Expose your app publicly using Cloudflare Tunnel
-
-```bash
-cloudflared tunnel --url http://localhost:5000
-```
-
-> Use the provided `https://your-url.trycloudflare.com/slack/events` as the Slack slash command request URL.
 
 ---
 
-## 🔎 Test Without Slack
+## 🌐 Deployment
 
-To test IP logic independently of Slack:
-```bash
-python test_ips/run_tests.py
-```
+The app is deployed to **Heroku**, and is automatically accessible from your configured Slack workspace. No need to run it manually on your local machine.
 
-> This will run multiple IPs (valid, invalid, edge cases) through your detection logic.
+### 📬 Slack Request URL
+In your Slack app settings, the request URL should be:
+Replace `<your-app-name>` with your actual Heroku app name (e.g., `hfipcheck`).
 
 ---
 
@@ -103,9 +64,9 @@ Bot response:
 
 ## 🛡️ Security
 
-- Slack secrets are stored in a `.env` file, never committed to Git
-- Uses environment variable loading via `python-dotenv`
-- Can be easily extended to cloud hosting (Render, Railway, Heroku)
+- Slack tokens and secrets are stored in .env and managed securely in Heroku config vars
+- No secrets are committed to Git
+- Hosted in a secure Heroku environment
 
 ---
 
@@ -114,7 +75,7 @@ Bot response:
 - Python 3.9+
 - Flask
 - Slack Bolt SDK
-- Cloudflare Tunnel
+- Heroku
 - ipaddress module
 
 ---
