@@ -13,9 +13,6 @@ slack_bolt_app = App(
 @slack_bolt_app.command("/hfipcheck")
 def handle_command(ack, respond, command):
     print("✅ Slash command triggered:", command)
-    ack()
     ip = command["text"].strip()
     result = check_ip(ip)
     respond(result)
-
-

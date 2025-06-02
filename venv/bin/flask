@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/Users/yuseiyamaguchi/Documents/Coding Projects/hfipcheck/venv/bin/python3.12" "$0" "$@"
-' '''
+#!/Users/yyamaguchi/Documents/projects/hfipcheck/venv/bin/python3.13
 # -*- coding: utf-8 -*-
 import re
 import sys
